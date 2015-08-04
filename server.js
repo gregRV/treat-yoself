@@ -69,6 +69,15 @@ app.post('/api/users', function(req, res) {
 
 // TASKS
 app.get('/api/tasks', function(req, res) {
+  Task.find({},
+    function(err, found) {
+      if (err) {
+        console.log('ERROR:', err);
+        res.send(err);
+      }
+      console.log('FOUND:', found);
+      res.json(found);
+    })
 });
 
 app.post('/api/tasks', function(req, res) {
@@ -79,6 +88,7 @@ app.post('/api/tasks', function(req, res) {
   task.description = sentTask.description;
   task.reward = sentTask.reward;
   task.priority = sentTask.priority;
+  task.complete = false;
 
   task.save(function(err){
     if (err) {

@@ -15,6 +15,10 @@ var TaskSchema = new mongoose.Schema({
 
   priority: {
     type: String,
+  },
+
+  complete: {
+    type: Boolean,
   }
 });
 

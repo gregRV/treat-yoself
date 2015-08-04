@@ -1,0 +1,13 @@
+<h1>Tasks</h1>
+
+<div ng-controller="TaskCtrl">
+  <div ng-repeat="task in tasks">
+    <h4>{{task.name}}</h4>
+      <ul>
+        <li>Description: {{task.description}}</li>
+        <li>Reward: {{task.reward}}</li>
+        <li>Priority: {{task.priority}}</li>
+        <li>Complete: {{task.complete ? 'Yes' : 'No'}}</li>
+      </ul>
+  </div>
+</div>
