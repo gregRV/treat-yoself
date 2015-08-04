@@ -25,44 +25,35 @@ app.use(methodOverride());
 ///////////
 // MODELS
 ///////////
-var Todo = mongoose.model('Todo', {
-    text : String
-});
+var User = require('./server/users/userModel.js');
 
 
 ///////////
 // ROUTES
 ///////////
-app.get('/api/todos', function(req, res) {
+app.post('/api/users', function(req, res) {
+  var user = new User();
+  user.username = req.body.name;
+  user.email = req.body.email;
+  user.password = req.body.password;
 
-  // use mongoose to get all todos in the database
-  Todo.find(function(err, todos) {
+  console.log('user after building', user);
 
-    // if there is an error retrieving, send the error. nothing after res.send(err) will execute
-    if (err)
-        res.send(err)
-
-    res.json(todos); // return all todos in JSON format
-  });
+  user.save(function(err){
+    if (err) {
+      console.log('ERROR:', err);
+      res.send(err);
+    }
+    res.json(user);
+  })
 });
 
-app.post('/api/todos', function(req, res) {
+app.get('/api/tasks', function(req, res) {
 
-  // create a todo, information comes from AJAX request from Angular
-  Todo.create({
-    text : req.body.text,
-    done : false
-  }, function(err, todo) {
-    if (err)
-        res.send(err);
+});
 
-    // get and return all the todos after you create another
-    Todo.find(function(err, todos) {
-      if (err)
-          res.send(err)
-      res.json(todos);
-    });
-  });
+app.post('/api/tasks', function(req, res) {
+
 });
 
 

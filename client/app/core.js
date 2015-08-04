@@ -51,7 +51,20 @@ var treatyoself = angular.module('treatyoself', [
     // };
   })
   .controller('AuthCtrl', function($scope, $http){
+    $scope.user = {};
 
+    $scope.createUser = function() {
+      console.log('USER in client:', $scope.user);
+
+      $http.post('/api/users', $scope.user)
+        .success(function(data) {
+          $scope.user = {};
+          console.log('data returned:', data);
+        })
+        .error(function(data) {
+          console.log('Error: ' + data);
+        });
+    };
   })
 
 
