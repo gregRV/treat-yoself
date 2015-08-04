@@ -20,49 +20,44 @@ var treatyoself = angular.module('treatyoself', [
       redirectTo: '/'
     });
   })
-  .controller('MainCtrl', function($scope, $http, $location){
+  .controller('MainCtrl', function($scope){
     $scope.formData = {};
 
     $scope.test = function() {
       console.log('TEST');
     };
-
-    // WORKS, BUT DONT NEED TO FETCH 'TODOS' NOW
-    // $http.get('/api/todos')
-    //   .success(function(data) {
-    //     $scope.todos = data;
-    //     console.log(data);
-    //   })
-    //   .error(function(data) {
-    //     console.log('Error: ' + data);
-    //   });
-
-    // $scope.createTodo = function() {
-    //   $http.post('/api/todos', $scope.formData)
-    //     .success(function(data) {
-    //       // clear the form so our user is ready to enter another
-    //       $scope.formData = {};
-    //       $scope.todos = data;
-    //       console.log(data);
-    //     })
-    //     .error(function(data) {
-    //       console.log('Error: ' + data);
-    //     });
-    // };
   })
   .controller('AuthCtrl', function($scope, $http){
-    $scope.user = {};
+    $scope.currentUser = {};
+    $scope.userForm = {};
+
+    $scope.handleSignin = function() {
+      console.log('CLIENT SIGNIN', $scope.userForm);
+
+      $http.post('/api/sessions', $scope.userForm)
+        .success(function(user){
+          console.log('USER RETURNED FROM SERVER:', user);
+          $scope.currentUser = user;
+        })
+        .error(function(data){
+          console.log('Error:', data);
+        })
+    };
+  })
+  .controller('UserCtrl', function($scope, $http){
+    $scope.currentUser = {};
+    $scope.userForm = {};
 
     $scope.createUser = function() {
-      console.log('USER in client:', $scope.user);
-
-      $http.post('/api/users', $scope.user)
+      $http.post('/api/users', $scope.userForm)
         .success(function(data) {
-          $scope.user = {};
           console.log('data returned:', data);
+
+          $scope.userForm = {};
+          $scope.currentUser = data;
         })
         .error(function(data) {
-          console.log('Error: ' + data);
+          console.log('Error:' + data);
         });
     };
   })

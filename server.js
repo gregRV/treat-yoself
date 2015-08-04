@@ -14,7 +14,7 @@ var methodOverride = require('method-override'); // simulate DELETE and PUT (exp
 ///////////
 mongoose.connect('mongodb://localhost/treatyoself');
 
-app.use(express.static(__dirname + '/client/app'));                 // set the static files location /client/app/img will be /img for users
+app.use(express.static(__dirname + '/client/app'));             // set the static files location /client/app/img will be /img for users
 app.use(morgan('dev'));                                         // log every request to the console
 app.use(bodyParser.urlencoded({'extended':'true'}));            // parse application/x-www-form-urlencoded
 app.use(bodyParser.json());                                     // parse application/json
@@ -31,6 +31,23 @@ var User = require('./server/users/userModel.js');
 ///////////
 // ROUTES
 ///////////
+
+// AUTH + SESSIONS
+app.post('/api/sessions', function(req, res) {
+  var user = req.body;
+
+  User.findOne({
+    email: user.email
+  }, function(err, found) {
+    if (err) {
+      console.log('Error:', err);
+      res.send(err);
+    }
+    console.log('FOUND:', found);
+  })
+});
+
+// USERS
 app.post('/api/users', function(req, res) {
   var user = new User();
   user.username = req.body.name;
@@ -48,6 +65,7 @@ app.post('/api/users', function(req, res) {
   })
 });
 
+// TASKS
 app.get('/api/tasks', function(req, res) {
 
 });
