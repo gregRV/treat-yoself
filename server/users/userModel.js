@@ -23,19 +23,6 @@ var UserSchema = new mongoose.Schema({
   },
 });
 
-UserSchema.methods.comparePasswords = function (candidatePassword) {
-  // var defer = Q.defer();
-  // var savedPassword = this.password;
-  // bcrypt.compare(candidatePassword, savedPassword, function (err, isMatch) {
-  //   if (err) {
-  //     defer.reject(err);
-  //   } else {
-  //     defer.resolve(isMatch);
-  //   }
-  // });
-  // return defer.promise;
-};
-
 // THIS FUNCTION, EVEN WHEN COMMENTED OUT, HELD UP THE USER POST!
 // PROBABLY BECAUSE IT WAS WAITING FOR next() T_____T
 // ALSO, IF YOU TRY TO ASSIGN A PROPERTY THAT DOESN'T EXIST ON THE MODEL,

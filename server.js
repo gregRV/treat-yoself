@@ -26,6 +26,7 @@ app.use(methodOverride());
 // MODELS
 ///////////
 var User = require('./server/users/userModel.js');
+var Task = require('./server/tasks/taskModel.js');
 
 
 ///////////
@@ -71,6 +72,21 @@ app.get('/api/tasks', function(req, res) {
 });
 
 app.post('/api/tasks', function(req, res) {
+  var sentTask = req.body;
+
+  var task = new Task();
+  task.name = sentTask.name;
+  task.description = sentTask.description;
+  task.reward = sentTask.reward;
+  task.priority = sentTask.priority;
+
+  task.save(function(err){
+    if (err) {
+      console.log('ERROR:', err);
+      res.send(err);
+    }
+    res.json(task);
+  });
 });
 
 

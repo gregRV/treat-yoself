@@ -3,7 +3,18 @@ var mongoose = require('mongoose');
 var TaskSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: true
+  },
+
+  description: {
+    type: String,
+  },
+
+  reward: {
+    type: String,
+  },
+
+  priority: {
+    type: String,
   }
 });
 

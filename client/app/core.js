@@ -16,6 +16,10 @@ var treatyoself = angular.module('treatyoself', [
       templateUrl: 'auth/signin.html',
       controller: 'AuthCtrl',
     })
+    .when('/tasks', {
+      templateUrl: '/tasks/newTask.html',
+      controller: 'TaskCtrl'
+    })
     .otherwise({
       redirectTo: '/'
     });
@@ -73,6 +77,20 @@ var treatyoself = angular.module('treatyoself', [
           console.log('ERROR:' + data);
         });
     };
+  })
+
+  .controller('TaskCtrl', function($scope, $http, GlobalHelper){
+    $scope.taskForm = {};
+
+    $scope.createTask = function() {
+      $http.post('/api/tasks', $scope.taskForm)
+        .success(function(data){
+          console.log('CREATE TASK DATA:', data);
+        })
+        .error(function(err){
+          console.log('ERROR:', err);
+        })
+    }
   })
 
   .factory('GlobalHelper', function ($http) {

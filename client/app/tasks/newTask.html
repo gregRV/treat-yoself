@@ -1,0 +1,14 @@
+<h1>New Task</h1>
+
+<form name="taskForm" ng-controller='TaskCtrl'>
+  <input type="text", ng-model="taskForm.name" placeholder="name">
+  <br>
+  <input type="text" ng-model="taskForm.description" placeholder="description">
+  <br>
+  <input type="text" ng-model="taskForm.reward" placeholder="reward">
+  <br>
+  <input type="text" ng-model="taskForm.priority" placeholder="priority">
+  <br>
+  <input ng-click="createTask(taskForm.name, taskForm.description, taskForm.reward, taskForm.priority)" type="submit" val="Create Task">
+  <br>
+</form>
