@@ -16,22 +16,22 @@ var treatyoself = angular.module('treatyoself', [
       templateUrl: 'auth/signin.html',
       controller: 'AuthCtrl',
     })
-    .when('/signout', {
-
-    })
     .otherwise({
       redirectTo: '/'
     });
   })
 
   .controller('MainCtrl', function($scope, GlobalHelper){
+    $scope.isLoggedIn = function() {
+      return !!GlobalHelper.currentUser;
+    };
+
     $scope.checkCurrentUser = function() {
-      GlobalHelper.test();
       console.log('CURRENT USER:', GlobalHelper.currentUser);
     };
 
     $scope.signOut = function() {
-      GlobalHelper.currentUser = {};
+      GlobalHelper.currentUser = null;
       console.log('CURRENT USER:', GlobalHelper.currentUser);
     }
   })
@@ -72,7 +72,7 @@ var treatyoself = angular.module('treatyoself', [
   })
 
   .factory('GlobalHelper', function ($http) {
-    var currentUser = {};
+    var currentUser = null;
 
     var test = function() {
       console.log('LOGGING FROM MAIN SERVICE');

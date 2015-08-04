@@ -26,10 +26,12 @@
 
     <!-- NAVIGATION -->
     <div>
-      <ul class="nav navbar-nav">
+      <ul ng-class="isLoggedIn() ? 'hide' : 'nav navbar-nav'">
         <li><a ng-href="#/signin">Sign In</a></li>
         <li><a ng-href="#/signup">Sign Up</a></li>
-        <!-- LATER ONLY RENDER THESE IF LOGGED IN -->
+      </ul>
+      <!-- ONLY RENDER IF LOGGED IN -->
+      <ul ng-class="isLoggedIn() ? 'nav navbar-nav' : 'hide'">
         <li><a ng-href="#/tasks">Tasks</a></li>
         <li><a ng-href="#/treats">Treats</a></li>
         <li><a href="#" ng-click="signOut()">Sign Out</a></li>
@@ -37,7 +39,7 @@
     </div>
 
     <!-- TEST BUTTON -->
-    <button ng-click="checkCurrentUser()">Current User</button>
+    <button ng-click="isLoggedIn()">TEST BOX</button>
 
     <!-- NG-VIEW -->
     <div ng-view=""></div>
