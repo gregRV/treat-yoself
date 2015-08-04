@@ -13,7 +13,8 @@
         <li>Reward: {{task.reward}}</li>
         <li>Priority: {{task.priority}}</li>
       </ul>
-      <button ng-click="completeTask(task.name)" class="btn-xs btn-success">done</button>
+      <button ng-click="setTaskStatus(task.name, true)" class="btn-xs btn-success">done</button>
+      <br><br>
   </div>
 
   <hr />
@@ -26,6 +27,8 @@
         <li>Reward: {{task.reward}}</li>
         <li>Priority: {{task.priority}}</li>
       </ul>
+      <button ng-click="setTaskStatus(task.name, false)" class="btn-xs btn-warning">not yet</button>
+      <br><br>
   </div>
 
 </div>

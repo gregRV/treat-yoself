@@ -113,12 +113,13 @@ var treatyoself = angular.module('treatyoself', [
         })
     }
 
-    $scope.completeTask = function(name) {
+    $scope.setTaskStatus = function(name, status) {
       console.log('COMPLETE TASK OF:', name);
 
-      $http.post('/api/tasks/edit', {taskName: name})
+      $http.post('/api/tasks/edit', {taskName: name, status: status})
         .success(function(data){
           console.log('EDITED DATA:', data);
+          $location.path('/tasks');
         })
         .error(function(err){
           console.log('ERROR:', err);

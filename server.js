@@ -100,12 +100,12 @@ app.post('/api/tasks', function(req, res) {
 });
 
 app.post('/api/tasks/edit', function(req, res) {
-  console.log('TASK NAME TO EDIT:', req.body.taskName)
+  console.log('TASK NAME TO EDIT:', req.body)
 
   Task.findOne({name: req.body.taskName}, function(err, task){
     console.log('FOUND TASK:', task);
 
-    task.complete = true;
+    task.complete = req.body.status;
     task.save();
     res.json(task);
   });
