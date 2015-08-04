@@ -1,0 +1,60 @@
+<!-- index.html -->
+<!doctype html>
+
+<!-- ASSIGN OUR ANGULAR MODULE -->
+<html ng-app="treatyoself">
+<head>
+  <!-- META -->
+  <meta charset="utf-8">
+  <!-- Optimize mobile viewport -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Treat Yo'self</title>
+
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="styles/styles.css">
+
+  <!-- SCRIPTS -->
+</head>
+
+<body ng-controller="MainCtrl">
+
+  <div class="container">
+
+    <!-- HEADERS -->
+    <h1><a href="#/">Treat Yo'self</a></h1>
+    <h3>You deserve it.</h3>
+
+    <!-- NAVIGATION -->
+    <div>
+      <ul class="nav navbar-nav">
+        <li><a ng-href="#/signin">Sign In</a></li>
+        <li><a ng-href="#/signup">Sign Up</a></li>
+        <!-- LATER ONLY RENDER THESE IF LOGGED IN -->
+        <li><a ng-href="#/tasks">Tasks</a></li>
+        <li><a ng-href="#/treats">Treats</a></li>
+        <li><a ng-href="#/signout">Sign Out</a></li>
+      </ul>
+    </div>
+
+    <!-- TEST BUTTON -->
+    <button ng-click="test()">PLZ</button>
+
+    <!-- NG-VIEW -->
+    <div ng-view=""></div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+      <div class="container">
+        <p>Made w/<span class="glyphicon glyphicon-heart"></span> by <a href="http://www.github.com/gregRV">gregRV</a></p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- SCRIPTS   -->
+  <script src="lib/angular/angular.js"></script>
+  <script src="lib/angular-route/angular-route.js"></script>
+  <script src="core.js"></script>
+
+</body>
+</html>
