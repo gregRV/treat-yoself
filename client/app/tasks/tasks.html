@@ -1,13 +1,31 @@
 <h1>Tasks</h1>
+<hr />
 
 <div ng-controller="TaskCtrl">
-  <div ng-repeat="task in tasks">
+  <input type="text" ng-model="search" placeholder="search" />
+  <br><br>
+
+  <h4>INCOMPLETE</h4>
+  <div ng-repeat="task in tasks | filter: task.complete | filter:search">
     <h4>{{task.name}}</h4>
       <ul>
         <li>Description: {{task.description}}</li>
         <li>Reward: {{task.reward}}</li>
         <li>Priority: {{task.priority}}</li>
-        <li>Complete: {{task.complete ? 'Yes' : 'No'}}</li>
+      </ul>
+      <button class="btn-xs btn-success">done</button>
+  </div>
+
+  <hr />
+
+  <h4>COMPLETE</h4>
+  <div ng-repeat="task in tasks | filter: !task.complete | filter:search" >
+    <h4>{{task.name}}</h4>
+      <ul>
+        <li>Description: {{task.description}}</li>
+        <li>Reward: {{task.reward}}</li>
+        <li>Priority: {{task.priority}}</li>
       </ul>
   </div>
+
 </div>
