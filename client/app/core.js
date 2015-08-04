@@ -26,6 +26,10 @@ var treatyoself = angular.module('treatyoself', [
       return !!GlobalHelper.currentUser;
     };
 
+    $scope.getCurrentUser = function() {
+      return GlobalHelper.currentUser;
+    }
+
     $scope.checkCurrentUser = function() {
       console.log('CURRENT USER:', GlobalHelper.currentUser);
     };

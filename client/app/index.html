@@ -22,10 +22,10 @@
 
     <!-- HEADERS -->
     <h1><a href="#/">Treat Yo'self</a></h1>
-    <h3>You deserve it.</h3>
+    <h3 ng-if="isLoggedIn()">You deserve it, {{getCurrentUser().username}}.</h3>
 
     <!-- NAVIGATION -->
-    <div>
+    <div class='nav'>
       <ul ng-class="isLoggedIn() ? 'hide' : 'nav navbar-nav'">
         <li><a ng-href="#/signin">Sign In</a></li>
         <li><a ng-href="#/signup">Sign Up</a></li>
@@ -39,7 +39,7 @@
     </div>
 
     <!-- TEST BUTTON -->
-    <button ng-click="isLoggedIn()">TEST BOX</button>
+    <button ng-click="checkCurrentUser()">TEST BOX</button>
 
     <!-- NG-VIEW -->
     <div ng-view=""></div>
