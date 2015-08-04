@@ -16,18 +16,24 @@ var treatyoself = angular.module('treatyoself', [
       templateUrl: 'auth/signin.html',
       controller: 'AuthCtrl',
     })
+    .when('/signout', {
+
+    })
     .otherwise({
       redirectTo: '/'
     });
   })
 
   .controller('MainCtrl', function($scope, GlobalHelper){
-
-
     $scope.checkCurrentUser = function() {
       GlobalHelper.test();
       console.log('CURRENT USER:', GlobalHelper.currentUser);
     };
+
+    $scope.signOut = function() {
+      GlobalHelper.currentUser = {};
+      console.log('CURRENT USER:', GlobalHelper.currentUser);
+    }
   })
 
   .controller('AuthCtrl', function($scope, $http, GlobalHelper){
