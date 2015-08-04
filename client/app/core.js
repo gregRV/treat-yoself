@@ -137,16 +137,43 @@ var treatyoself = angular.module('treatyoself', [
 
   .controller('TreatCtrl', function($scope, $http, $location, GlobalHelper){
     $scope.treatForm = {};
+    $scope.treats;
 
-    $scope.createTreat = function() {
-      $http.post('/api/treats', $scope.treatForm)
+    $scope.getTreats = function() {
+      $http.get('/api/treats')
         .success(function(data){
-          console.log('CREATED TREAT:', data);
+          console.log('GET TREATS DATA:', data);
+          $scope.treats = data;
         })
         .error(function(err){
           console.log('ERROR:', err);
         })
     }
+    $scope.getTreats();
+
+    $scope.createTreat = function() {
+      $http.post('/api/treats', $scope.treatForm)
+        .success(function(data){
+          console.log('CREATED TREAT:', data);
+          $location.path('/treats');
+        })
+        .error(function(err){
+          console.log('ERROR:', err);
+        })
+    }
+
+    $scope.setTreatStatus = function(name, status) {
+      console.log('COMPLETE TASK OF:', name);
+
+      $http.post('/api/treats/edit', {name: name, status: status})
+        .success(function(data){
+          console.log('EDITED DATA:', data);
+          $location.path('/treats');
+        })
+        .error(function(err){
+          console.log('ERROR:', err);
+        })
+    };
   })
 
   .factory('GlobalHelper', function ($http) {

@@ -113,6 +113,18 @@ app.post('/api/tasks/edit', function(req, res) {
 });
 
 // TREATS
+app.get('/api/treats', function(req, res) {
+  Treat.find({},
+    function(err, found) {
+      if (err) {
+        console.log('ERROR:', err);
+        res.send(err);
+      }
+      console.log('FOUND:', found);
+      res.json(found);
+    })
+});
+
 app.post('/api/treats/', function(req, res) {
   console.log('CREATING TREAT:', req.body);
 
@@ -122,6 +134,18 @@ app.post('/api/treats/', function(req, res) {
   treat.redeemed = false;
   treat.save();
   res.json(treat);
+});
+
+app.post('/api/treats/edit', function(req, res) {
+  console.log('TREAT TO EDIT:', req.body)
+
+  Treat.findOne({name: req.body.name}, function(err, treat){
+    console.log('FOUND TASK:', treat);
+
+    treat.redeemed = req.body.status;
+    treat.save();
+    res.json(treat);
+  });
 });
 
 
