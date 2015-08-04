@@ -24,6 +24,14 @@ var treatyoself = angular.module('treatyoself', [
       templateUrl: '/tasks/newTask.html',
       controller: 'TaskCtrl'
     })
+    .when('/treats/new', {
+      templateUrl: '/treats/newTreat.html',
+      controller: 'TreatCtrl'
+    })
+    .when('/treats', {
+      templateUrl: '/treats/treats.html',
+      controller: 'TreatCtrl'
+    })
     .otherwise({
       redirectTo: '/'
     });
@@ -125,6 +133,20 @@ var treatyoself = angular.module('treatyoself', [
           console.log('ERROR:', err);
         })
     };
+  })
+
+  .controller('TreatCtrl', function($scope, $http, $location, GlobalHelper){
+    $scope.treatForm = {};
+
+    $scope.createTreat = function() {
+      $http.post('/api/treats', $scope.treatForm)
+        .success(function(data){
+          console.log('CREATED TREAT:', data);
+        })
+        .error(function(err){
+          console.log('ERROR:', err);
+        })
+    }
   })
 
   .factory('GlobalHelper', function ($http) {

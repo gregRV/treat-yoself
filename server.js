@@ -27,6 +27,7 @@ app.use(methodOverride());
 ///////////
 var User = require('./server/users/userModel.js');
 var Task = require('./server/tasks/taskModel.js');
+var Treat = require('./server/treats/treatModel.js');
 
 
 ///////////
@@ -109,6 +110,18 @@ app.post('/api/tasks/edit', function(req, res) {
     task.save();
     res.json(task);
   });
+});
+
+// TREATS
+app.post('/api/treats/', function(req, res) {
+  console.log('CREATING TREAT:', req.body);
+
+  var treat = new Treat();
+  treat.name = req.body.name;
+  treat.price = req.body.price;
+  treat.redeemed = false;
+  treat.save();
+  res.json(treat);
 });
 
 
