@@ -112,6 +112,18 @@ var treatyoself = angular.module('treatyoself', [
           console.log('ERROR:', err);
         })
     }
+
+    $scope.completeTask = function(name) {
+      console.log('COMPLETE TASK OF:', name);
+
+      $http.post('/api/tasks/edit', {taskName: name})
+        .success(function(data){
+          console.log('EDITED DATA:', data);
+        })
+        .error(function(err){
+          console.log('ERROR:', err);
+        })
+    };
   })
 
   .factory('GlobalHelper', function ($http) {

@@ -13,7 +13,7 @@
         <li>Reward: {{task.reward}}</li>
         <li>Priority: {{task.priority}}</li>
       </ul>
-      <button class="btn-xs btn-success">done</button>
+      <button ng-click="completeTask(task.name)" class="btn-xs btn-success">done</button>
   </div>
 
   <hr />
