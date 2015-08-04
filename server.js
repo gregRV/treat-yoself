@@ -2,8 +2,8 @@
 // SET UP
 ///////////
 var express  = require('express');
-var app      = express();                               // create our app w/ express
-var mongoose = require('mongoose');                     // mongoose for mongodb
+var app      = express();                   // create our app w/ express
+var mongoose = require('mongoose');         // mongoose for mongodb
 var morgan = require('morgan');             // log requests to the console (express4)
 var bodyParser = require('body-parser');    // pull information from HTML POST (express4)
 var methodOverride = require('method-override'); // simulate DELETE and PUT (express4)
@@ -40,10 +40,11 @@ app.post('/api/sessions', function(req, res) {
     email: user.email
   }, function(err, found) {
     if (err) {
-      console.log('Error:', err);
+      console.log('ERROR:', err);
       res.send(err);
     }
     console.log('FOUND:', found);
+    res.json(found);
   })
 });
 
@@ -54,7 +55,7 @@ app.post('/api/users', function(req, res) {
   user.email = req.body.email;
   user.password = req.body.password;
 
-  console.log('user after building', user);
+  console.log('USER AFTER BUILDING', user);
 
   user.save(function(err){
     if (err) {
@@ -67,11 +68,9 @@ app.post('/api/users', function(req, res) {
 
 // TASKS
 app.get('/api/tasks', function(req, res) {
-
 });
 
 app.post('/api/tasks', function(req, res) {
-
 });
 
 
