@@ -131,6 +131,8 @@ var treatyoself = angular.module('treatyoself', [
             console.log('SHOULD ADD TIX!', data);
             GlobalHelper.currentUser.tixCount += parseInt(data.reward);
             console.log('CURRENT USER TIX:', GlobalHelper.currentUser.tixCount);
+
+            $scope.getTasks(); // refresh screen?
           } else {
             // REMOVING REWARD FROM USER'S POINTS
             if (GlobalHelper.currentUser.tixCount < data.reward) {
@@ -141,6 +143,8 @@ var treatyoself = angular.module('treatyoself', [
 
             console.log('CURRENT USER TIX:', GlobalHelper.currentUser.tixCount);
           }
+
+          $scope.getTasks(); // refresh screen?
 
           console.log('EDITED DATA:', data);
           $location.path('/tasks');
@@ -181,6 +185,10 @@ var treatyoself = angular.module('treatyoself', [
     $scope.checkCredit = function(name, status, price) {
       if (GlobalHelper.currentUser.tixCount >= price) {
         console.log('HAS ENOUGH POINTS');
+
+        // DECREMENTING USER'S POINTS AFTER REDEEMING TREAT
+        GlobalHelper.currentUser.tixCount -= parseInt(price);
+
         $scope.setTreatStatus(name, status);
       } else {
         console.log('CANT AFFORD, DO MORE WORK!');

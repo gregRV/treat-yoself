@@ -6,6 +6,7 @@
   <br><br>
 
   <h4>INCOMPLETE</h4>
+  <br>
   <div ng-repeat="task in tasks | filter: task.complete | filter:search">
     <h4>{{task.name}}</h4>
       <ul>
@@ -20,6 +21,7 @@
   <hr />
 
   <h4>COMPLETE</h4>
+  <br>
   <div ng-repeat="task in tasks | filter: !task.complete | filter:search" >
     <h4>{{task.name}}</h4>
       <ul>

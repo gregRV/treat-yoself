@@ -22,11 +22,13 @@
 
     <!-- HEADERS -->
     <h1><a href="#/">Treat Yo'self</a></h1>
-    <h4 ng-if="isLoggedIn()">You deserve it, {{getCurrentUser().username}}.</h4>
-    <h4 ng-if="isLoggedIn()">{{getCurrentUser().tixCount}} Points</h4>
+    <div ng-if="isLoggedIn()" class="">
+      <h4>You deserve it, {{getCurrentUser().username}}.</h4>
+      <h4>{{getCurrentUser().tixCount}} Points</h4>
+    </div>
 
     <!-- NAVIGATION -->
-    <div class='nav'>
+    <div class='nav justified'>
       <ul ng-class="isLoggedIn() ? 'hide' : 'nav navbar-nav'">
         <li><a ng-href="#/signin">Sign In</a></li>
         <li><a ng-href="#/signup">Sign Up</a></li>
@@ -37,21 +39,19 @@
         <li><a ng-href="#/tasks/new">New Task</a></li>
         <li><a ng-href="#/treats">Treats</a></li>
         <li><a ng-href="#/treats/new">New Treat</a></li>
-        <li><a href="#" ng-click="signOut()">Sign Out</a></li>
+        <li><a href="#/" ng-click="signOut()">Sign Out</a></li>
       </ul>
     </div>
-
-    <!-- TEST BUTTON -->
-    <!-- <button ng-click="checkCurrentUser()">TEST BOX</button> -->
 
     <!-- NG-VIEW -->
     <div ng-view=""></div>
 
     <!-- FOOTER -->
     <hr />
-    <div class="footer text-center">
+    <div class="footer">
       <div class="container">
         <p>Made w/<span class="glyphicon glyphicon-heart-empty"></span> by <a href="http://www.github.com/gregRV">gregRV</a></p>
+        <br>
       </div>
     </div>
 
