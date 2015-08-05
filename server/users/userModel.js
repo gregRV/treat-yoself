@@ -21,6 +21,11 @@ var UserSchema = new mongoose.Schema({
     type: String
     // required: true
   },
+
+  tixCount: {
+    type: Number,
+    default: 0
+  }
 });
 
 // THIS FUNCTION, EVEN WHEN COMMENTED OUT, HELD UP THE USER POST!

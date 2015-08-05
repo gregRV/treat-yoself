@@ -2,7 +2,7 @@
 <hr />
 
 <div ng-controller="TaskCtrl">
-  <input type="text" ng-model="search" placeholder="search" />
+  <input type="text" ng-model="search" placeholder="Search" />
   <br><br>
 
   <h4>INCOMPLETE</h4>
@@ -10,10 +10,10 @@
     <h4>{{task.name}}</h4>
       <ul>
         <li>Description: {{task.description}}</li>
-        <li>Reward: {{task.reward}}</li>
+        <li>Reward: {{task.reward}} Points</li>
         <li>Priority: {{task.priority}}</li>
       </ul>
-      <button ng-click="setTaskStatus(task.name, true)" class="btn-xs btn-success">done</button>
+      <button ng-click="setTaskStatus(task.name, true)" class="btn-xs btn-success">Done</button>
       <br><br>
   </div>
 
@@ -24,10 +24,10 @@
     <h4>{{task.name}}</h4>
       <ul>
         <li>Description: {{task.description}}</li>
-        <li>Reward: {{task.reward}}</li>
+        <li>Reward: {{task.reward}} Points</li>
         <li>Priority: {{task.priority}}</li>
       </ul>
-      <button ng-click="setTaskStatus(task.name, false)" class="btn-xs btn-warning">not yet</button>
+      <button ng-click="setTaskStatus(task.name, false)" class="btn-xs btn-warning">Not Yet</button>
       <br><br>
   </div>
 

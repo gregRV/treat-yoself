@@ -2,14 +2,14 @@
 <hr />
 
 <div ng-controller="TreatCtrl">
-  <input type="text" ng-model="search" placeholder="search" />
+  <input type="text" ng-model="search" placeholder="Search" />
   <br><br>
 
   <h4>AVAILABLE</h4>
   <div ng-repeat="treat in treats | filter: treat.redeemed | filter:search">
     <h4>{{treat.name}}</h4>
-    <p>Price: {{treat.price}}</p>
-    <button ng-click="setTreatStatus(treat.name, true)" class="btn-xs btn-success">redeem</button>
+    <p>Price: {{treat.price}} Points</p>
+    <button ng-click="checkCredit(treat.name, true, treat.price)" class="btn-xs btn-success">Redeem</button>
     <br><br>
   </div>
 
@@ -18,8 +18,8 @@
   <h4>EARNED</h4>
   <div ng-repeat="treat in treats | filter: !treat.redeemed | filter:search" >
     <h4>{{treat.name}}</h4>
-    <p>Price: {{treat.price}}</p>
-    <button ng-click="setTreatStatus(treat.name, false)" class="btn-xs btn-warning">not yet</button>
+    <p>Price: {{treat.price}} Points</p>
+    <button ng-click="checkCredit(treat.name, false, treat.price)" class="btn-xs btn-warning">Not Yet</button>
     <br><br>
   </div>
 

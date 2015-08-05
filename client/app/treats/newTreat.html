@@ -1,9 +1,9 @@
 <h1>New Treat</h1>
 
 <form name="treatForm" ng-controller='TreatCtrl'>
-  <input type="text", ng-model="treatForm.name" placeholder="name">
+  <input type="text", ng-model="treatForm.name" placeholder="Name">
   <br>
-  <input type="text" ng-model="treatForm.price" placeholder="price">
+  <input type="text" ng-model="treatForm.price" placeholder="Price">
   <br>
   <input ng-click="createTreat(treatForm.name, treatForm.price)" type="submit" val="Create Treat">
   <br>

@@ -1,14 +1,15 @@
 <h1>Sign Up</h1>
 
 <form name="signupForm" ng-controller='UserCtrl'>
-  <input type="text", ng-model="userForm.name" placeholder="username">
+  <input type="text", ng-model="userForm.name" placeholder="Username">
   <br>
-  <input type="email" ng-model="userForm.email" placeholder="email">
+  <input type="email" ng-model="userForm.email" placeholder="Email">
   <br>
-  <input type="password" ng-model="userForm.password" placeholder="password">
+  <input type="password" ng-model="userForm.password" placeholder="Password">
   <br>
   <input ng-click="createUser(userForm.name, userForm.email, userForm.password)" type="submit" val="Sign In">
   <br>
 </form>
 
+<br><br>
 <a href="/#/signin">Already have an account? Sign in!</a>

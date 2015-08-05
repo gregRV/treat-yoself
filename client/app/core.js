@@ -126,6 +126,22 @@ var treatyoself = angular.module('treatyoself', [
 
       $http.post('/api/tasks/edit', {taskName: name, status: status})
         .success(function(data){
+          if (status === true) {
+            // ADDING REWARD TO USER'S POINTS
+            console.log('SHOULD ADD TIX!', data);
+            GlobalHelper.currentUser.tixCount += parseInt(data.reward);
+            console.log('CURRENT USER TIX:', GlobalHelper.currentUser.tixCount);
+          } else {
+            // REMOVING REWARD FROM USER'S POINTS
+            if (GlobalHelper.currentUser.tixCount < data.reward) {
+              GlobalHelper.currentUser.tixCount = 0;
+            } else {
+              GlobalHelper.currentUser.tixCount -= parseInt(data.reward);
+            }
+
+            console.log('CURRENT USER TIX:', GlobalHelper.currentUser.tixCount);
+          }
+
           console.log('EDITED DATA:', data);
           $location.path('/tasks');
         })
@@ -162,6 +178,16 @@ var treatyoself = angular.module('treatyoself', [
         })
     }
 
+    $scope.checkCredit = function(name, status, price) {
+      if (GlobalHelper.currentUser.tixCount >= price) {
+        console.log('HAS ENOUGH POINTS');
+        $scope.setTreatStatus(name, status);
+      } else {
+        console.log('CANT AFFORD, DO MORE WORK!');
+        $location.path('/tasks');
+      }
+    }
+
     $scope.setTreatStatus = function(name, status) {
       console.log('COMPLETE TASK OF:', name);
 
@@ -173,7 +199,7 @@ var treatyoself = angular.module('treatyoself', [
         .error(function(err){
           console.log('ERROR:', err);
         })
-    };
+    }
   })
 
   .factory('GlobalHelper', function ($http) {

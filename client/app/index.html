@@ -23,6 +23,7 @@
     <!-- HEADERS -->
     <h1><a href="#/">Treat Yo'self</a></h1>
     <h4 ng-if="isLoggedIn()">You deserve it, {{getCurrentUser().username}}.</h4>
+    <h4 ng-if="isLoggedIn()">{{getCurrentUser().tixCount}} Points</h4>
 
     <!-- NAVIGATION -->
     <div class='nav'>
@@ -48,9 +49,9 @@
 
     <!-- FOOTER -->
     <hr />
-    <div class="footer">
+    <div class="footer text-center">
       <div class="container">
-        <p>Made w/<span class="glyphicon glyphicon-heart"></span> by <a href="http://www.github.com/gregRV">gregRV</a></p>
+        <p>Made w/<span class="glyphicon glyphicon-heart-empty"></span> by <a href="http://www.github.com/gregRV">gregRV</a></p>
       </div>
     </div>
 
