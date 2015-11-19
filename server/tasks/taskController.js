@@ -13,3 +13,22 @@ exports.get = function(req, res) {
       res.json(found);
     })
 };
+
+exports.create = function(req, res) {
+  var sentTask = req.body;
+
+  var task = new Task();
+  task.name = sentTask.name;
+  task.description = sentTask.description;
+  task.reward = sentTask.reward;
+  task.priority = sentTask.priority;
+  task.complete = false;
+
+  task.save(function(err){
+    if (err) {
+      console.log('ERROR:', err);
+      res.send(err);
+    }
+    res.json(task);
+  });
+};

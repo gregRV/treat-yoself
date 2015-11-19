@@ -48,25 +48,7 @@ app.post('/api/users', user.create);
 
 // TASKS
 app.get('/api/tasks', task.get);
-
-app.post('/api/tasks', function(req, res) {
-  var sentTask = req.body;
-
-  var task = new Task();
-  task.name = sentTask.name;
-  task.description = sentTask.description;
-  task.reward = sentTask.reward;
-  task.priority = sentTask.priority;
-  task.complete = false;
-
-  task.save(function(err){
-    if (err) {
-      console.log('ERROR:', err);
-      res.send(err);
-    }
-    res.json(task);
-  });
-});
+app.post('/api/tasks', task.create);
 
 app.post('/api/tasks/edit', function(req, res) {
   console.log('TASK NAME TO EDIT:', req.body)
