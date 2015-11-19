@@ -33,46 +33,21 @@ var Treat = require('./server/treats/treatModel.js');
 // CONTROLLERS
 ////////////////
 var session = require('./server/sessions/sessionController.js');
+var user = require('./server/users/userController.js');
+var task = require('./server/tasks/taskController.js');
 
 ///////////
 // ROUTES
 ///////////
 
 // AUTH + SESSIONS
-app.post('/api/sessions', session.login, function(req, res) {
-  res.end();
-});
+app.post('/api/sessions', session.login);
 
 // USERS
-app.post('/api/users', function(req, res) {
-  var user = new User();
-  user.username = req.body.name;
-  user.email = req.body.email;
-  user.password = req.body.password;
-
-  console.log('USER AFTER BUILDING', user);
-
-  user.save(function(err){
-    if (err) {
-      console.log('ERROR:', err);
-      res.send(err);
-    }
-    res.json(user);
-  })
-});
+app.post('/api/users', user.create);
 
 // TASKS
-app.get('/api/tasks', function(req, res) {
-  Task.find({},
-    function(err, found) {
-      if (err) {
-        console.log('ERROR:', err);
-        res.send(err);
-      }
-      console.log('FOUND:', found);
-      res.json(found);
-    })
-});
+app.get('/api/tasks', task.get);
 
 app.post('/api/tasks', function(req, res) {
   var sentTask = req.body;
