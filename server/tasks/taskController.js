@@ -9,7 +9,6 @@ exports.get = function(req, res) {
         console.log('ERROR:', err);
         res.send(err);
       }
-      console.log('FOUND:', found);
       res.json(found);
     })
 };

@@ -29,17 +29,19 @@ var User = require('./server/users/userModel.js');
 var Task = require('./server/tasks/taskModel.js');
 var Treat = require('./server/treats/treatModel.js');
 
+
 ////////////////
 // CONTROLLERS
 ////////////////
 var session = require('./server/sessions/sessionController.js');
 var user = require('./server/users/userController.js');
 var task = require('./server/tasks/taskController.js');
+var treat = require('./server/treats/treatController.js');
+
 
 ///////////
 // ROUTES
 ///////////
-
 // AUTH + SESSIONS
 app.post('/api/sessions', session.login);
 
@@ -52,40 +54,9 @@ app.post('/api/tasks', task.create);
 app.post('/api/tasks/edit', task.edit);
 
 // TREATS
-app.get('/api/treats', function(req, res) {
-  Treat.find({},
-    function(err, found) {
-      if (err) {
-        console.log('ERROR:', err);
-        res.send(err);
-      }
-      console.log('FOUND:', found);
-      res.json(found);
-    })
-});
-
-app.post('/api/treats/', function(req, res) {
-  console.log('CREATING TREAT:', req.body);
-
-  var treat = new Treat();
-  treat.name = req.body.name;
-  treat.price = req.body.price;
-  treat.redeemed = false;
-  treat.save();
-  res.json(treat);
-});
-
-app.post('/api/treats/edit', function(req, res) {
-  console.log('TREAT TO EDIT:', req.body)
-
-  Treat.findOne({name: req.body.name}, function(err, treat){
-    console.log('FOUND TASK:', treat);
-
-    treat.redeemed = req.body.status;
-    treat.save();
-    res.json(treat);
-  });
-});
+app.get('/api/treats', treat.get);
+app.post('/api/treats/', treat.create);
+app.post('/api/treats/edit', treat.edit);
 
 
 /////////////////
