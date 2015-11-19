@@ -29,25 +29,18 @@ var User = require('./server/users/userModel.js');
 var Task = require('./server/tasks/taskModel.js');
 var Treat = require('./server/treats/treatModel.js');
 
+////////////////
+// CONTROLLERS
+////////////////
+var session = require('./server/sessions/sessionController.js');
 
 ///////////
 // ROUTES
 ///////////
 
 // AUTH + SESSIONS
-app.post('/api/sessions', function(req, res) {
-  var user = req.body;
-
-  User.findOne({
-    email: user.email
-  }, function(err, found) {
-    if (err) {
-      console.log('ERROR:', err);
-      res.send(err);
-    }
-    console.log('FOUND:', found);
-    res.json(found);
-  })
+app.post('/api/sessions', session.login, function(req, res) {
+  res.end();
 });
 
 // USERS
