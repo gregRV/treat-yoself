@@ -32,3 +32,15 @@ exports.create = function(req, res) {
     res.json(task);
   });
 };
+
+exports.edit = function(req, res) {
+  console.log('TASK NAME TO EDIT:', req.body)
+
+  Task.findOne({name: req.body.taskName}, function(err, task){
+    console.log('FOUND TASK:', task);
+
+    task.complete = req.body.status;
+    task.save();
+    res.json(task);
+  });
+};

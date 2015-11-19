@@ -49,18 +49,7 @@ app.post('/api/users', user.create);
 // TASKS
 app.get('/api/tasks', task.get);
 app.post('/api/tasks', task.create);
-
-app.post('/api/tasks/edit', function(req, res) {
-  console.log('TASK NAME TO EDIT:', req.body)
-
-  Task.findOne({name: req.body.taskName}, function(err, task){
-    console.log('FOUND TASK:', task);
-
-    task.complete = req.body.status;
-    task.save();
-    res.json(task);
-  });
-});
+app.post('/api/tasks/edit', task.edit);
 
 // TREATS
 app.get('/api/treats', function(req, res) {
